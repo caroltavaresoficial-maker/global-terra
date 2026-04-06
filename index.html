@@ -4,951 +4,933 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Terra — Hub Técnico</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>Global Terra — Agronegócio Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-–earth: #1a1208;
-–soil: #2d1f0a;
-–clay: #8b5e3c;
-–gold: #c8a84b;
-–harvest: #e8c96a;
-–lime: #a8c748;
-–leaf: #5a8a28;
-–sky: #e8f4e8;
-–cream: #f5f0e8;
-–white: #fdfaf5;
+–gold: #C9A84C;
+–gold-light: #E8C97A;
+–gold-dark: #9A7B30;
+–earth: #2B1F0E;
+–earth-mid: #3D2E14;
+–earth-light: #5C4A28;
+–green-deep: #1A2E1A;
+–green-mid: #2D4A2D;
+–green-bright: #4A7C4A;
+–cream: #F5EDD8;
+–cream-light: #FAF5EA;
+–white: #FFFFFF;
+–text-muted: rgba(245,237,216,0.55);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
+font-family: ‘Barlow’, sans-serif;
 background: var(–earth);
-color: var(–white);
-font-family: ‘DM Sans’, sans-serif;
+color: var(–cream);
 overflow-x: hidden;
+cursor: none;
 }
 
-/* –– HERO –– */
+/* Custom cursor */
+.cursor {
+width: 10px; height: 10px;
+background: var(–gold);
+border-radius: 50%;
+position: fixed;
+top: 0; left: 0;
+pointer-events: none;
+z-index: 9999;
+transition: transform 0.15s ease;
+mix-blend-mode: screen;
+}
+.cursor-ring {
+width: 36px; height: 36px;
+border: 1.5px solid var(–gold);
+border-radius: 50%;
+position: fixed;
+top: 0; left: 0;
+pointer-events: none;
+z-index: 9998;
+transition: all 0.25s ease;
+opacity: 0.6;
+}
+
+/* NAV */
+nav {
+position: fixed; top: 0; left: 0; right: 0;
+z-index: 100;
+display: flex; justify-content: space-between; align-items: center;
+padding: 28px 60px;
+background: linear-gradient(180deg, rgba(43,31,14,0.95) 0%, transparent 100%);
+backdrop-filter: blur(2px);
+}
+.nav-logo {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.6rem;
+font-weight: 300;
+letter-spacing: 0.15em;
+color: var(–cream);
+}
+.nav-logo span { color: var(–gold); font-style: italic; }
+.nav-links { display: flex; gap: 40px; align-items: center; }
+.nav-links a {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.75rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–cream);
+text-decoration: none;
+opacity: 0.75;
+transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 1; color: var(–gold-light); }
+.nav-cta {
+border: 1px solid var(–gold) !important;
+padding: 10px 24px;
+opacity: 1 !important;
+color: var(–gold) !important;
+transition: all 0.3s !important;
+}
+.nav-cta:hover { background: var(–gold) !important; color: var(–earth) !important; }
+
+/* HERO */
 .hero {
 min-height: 100vh;
 position: relative;
-display: flex;
-flex-direction: column;
-justify-content: center;
-padding: 60px 40px 40px;
+display: flex; align-items: center;
 overflow: hidden;
 }
-
 .hero-bg {
 position: absolute; inset: 0;
 background:
-radial-gradient(ellipse 80% 60% at 70% 40%, rgba(90,138,40,0.18) 0%, transparent 60%),
-radial-gradient(ellipse 50% 80% at 10% 80%, rgba(200,168,75,0.12) 0%, transparent 50%),
-linear-gradient(160deg, #1a1208 0%, #2d1f0a 50%, #1a1208 100%);
-z-index: 0;
+radial-gradient(ellipse 80% 60% at 65% 40%, rgba(74,124,74,0.18) 0%, transparent 60%),
+radial-gradient(ellipse 50% 80% at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+linear-gradient(135deg, #1a0e04 0%, #2B1F0E 40%, #1e2a1e 100%);
+}
+.hero-grain {
+position: absolute; inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+opacity: 0.5;
 }
 
-.hero-grid {
-position: absolute; inset: 0; z-index: 0;
-background-image:
-linear-gradient(rgba(168,199,72,0.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(168,199,72,0.05) 1px, transparent 1px);
-background-size: 60px 60px;
-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
-}
-
-.hero-badge {
-position: relative; z-index: 2;
-display: inline-flex; align-items: center; gap: 10px;
-background: rgba(168,199,72,0.15);
-border: 1px solid rgba(168,199,72,0.3);
-border-radius: 100px;
-padding: 6px 18px;
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-color: var(–lime);
-letter-spacing: 0.12em;
-text-transform: uppercase;
-margin-bottom: 32px;
-width: fit-content;
-animation: fadeUp 0.8s ease both;
-}
-
-.hero-badge::before {
-content: ‘’;
-width: 6px; height: 6px;
-background: var(–lime);
+/* Geometric accent */
+.hero-geo {
+position: absolute;
+right: 5%;
+top: 50%;
+transform: translateY(-50%);
+width: 520px; height: 520px;
+border: 1px solid rgba(201,168,76,0.15);
 border-radius: 50%;
-box-shadow: 0 0 8px var(–lime);
-animation: pulse 2s infinite;
+animation: rotateSlow 40s linear infinite;
+}
+.hero-geo::before {
+content: ‘’;
+position: absolute; inset: 30px;
+border: 1px solid rgba(201,168,76,0.1);
+border-radius: 50%;
+animation: rotateSlow 25s linear infinite reverse;
+}
+.hero-geo::after {
+content: ‘’;
+position: absolute; inset: 80px;
+border: 1px solid rgba(74,124,74,0.2);
+border-radius: 50%;
+}
+@keyframes rotateSlow { to { transform: translateY(-50%) rotate(360deg); } }
+
+/* Vertical text */
+.hero-vertical {
+position: absolute;
+right: 60px; top: 50%;
+transform: translateY(-50%) rotate(90deg);
+transform-origin: center center;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.65rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(–gold);
+opacity: 0.5;
+white-space: nowrap;
 }
 
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.hero-content {
+position: relative;
+padding: 0 60px;
+max-width: 760px;
+animation: fadeUp 1.2s ease forwards;
+}
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(40px); }
+to { opacity: 1; transform: translateY(0); }
+}
 
-.hero-eyebrow {
-position: relative; z-index: 2;
-font-family: ‘Space Mono’, monospace;
-font-size: 12px;
-color: var(–gold);
-letter-spacing: 0.2em;
+.hero-tag {
+display: inline-flex; align-items: center; gap: 12px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.7rem;
+letter-spacing: 0.25em;
 text-transform: uppercase;
-margin-bottom: 16px;
-animation: fadeUp 0.8s 0.1s ease both;
+color: var(–gold);
+margin-bottom: 32px;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.3s forwards;
+}
+.hero-tag::before {
+content: ‘’;
+width: 32px; height: 1px;
+background: var(–gold);
 }
 
 .hero-title {
-position: relative; z-index: 2;
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(42px, 8vw, 88px);
-font-weight: 900;
-line-height: 0.95;
-margin-bottom: 12px;
-animation: fadeUp 0.8s 0.2s ease both;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(3.5rem, 7vw, 6rem);
+font-weight: 300;
+line-height: 1.05;
+margin-bottom: 28px;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.5s forwards;
 }
-
 .hero-title em {
-font-style: normal;
-color: var(–lime);
-position: relative;
-}
-
-.hero-title .gt {
+font-style: italic;
+color: var(–gold-light);
 display: block;
-color: var(–harvest);
-font-size: 0.55em;
-letter-spacing: 0.08em;
-text-transform: uppercase;
 }
 
 .hero-sub {
-position: relative; z-index: 2;
-font-size: 17px;
-color: rgba(253,250,245,0.65);
-max-width: 500px;
-line-height: 1.65;
-margin-bottom: 44px;
-animation: fadeUp 0.8s 0.35s ease both;
+font-size: 1rem;
+font-weight: 300;
+line-height: 1.8;
+color: var(–text-muted);
+max-width: 480px;
+margin-bottom: 52px;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.7s forwards;
 }
 
-.hero-ctas {
-position: relative; z-index: 2;
-display: flex; gap: 16px; flex-wrap: wrap;
-animation: fadeUp 0.8s 0.45s ease both;
+.hero-actions {
+display: flex; gap: 20px; align-items: center;
+opacity: 0;
+animation: fadeUp 0.8s ease 0.9s forwards;
 }
 
 .btn-primary {
-background: linear-gradient(135deg, var(–leaf), var(–lime));
+background: var(–gold);
 color: var(–earth);
-font-weight: 700;
-font-size: 14px;
-padding: 14px 28px;
-border-radius: 6px;
-border: none;
-cursor: pointer;
-letter-spacing: 0.04em;
-transition: transform 0.2s, box-shadow 0.2s;
-text-decoration: none;
-display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(90,138,40,0.4); }
-
-.btn-outline {
-background: transparent;
-color: var(–cream);
-font-weight: 500;
-font-size: 14px;
-padding: 14px 28px;
-border-radius: 6px;
-border: 1px solid rgba(253,250,245,0.2);
-cursor: pointer;
-letter-spacing: 0.04em;
-transition: border-color 0.2s, background 0.2s;
-text-decoration: none;
-}
-.btn-outline:hover { border-color: var(–harvest); background: rgba(232,201,106,0.07); }
-
-.hero-visual {
-position: absolute;
-right: -30px; top: 50%;
-transform: translateY(-50%);
-width: 420px; height: 420px;
-z-index: 1;
-opacity: 0.35;
-animation: fadeIn 1.5s 0.6s ease both;
-}
-
-.hero-visual svg { width: 100%; height: 100%; }
-
-/* –– SECTION COMMON –– */
-section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
-.section-label {
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-color: var(–lime);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.78rem;
 letter-spacing: 0.2em;
 text-transform: uppercase;
-margin-bottom: 12px;
+padding: 16px 36px;
+border: none;
+cursor: none;
+font-weight: 600;
+transition: all 0.3s;
+text-decoration: none;
+display: inline-block;
 }
-.section-title {
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(28px, 4vw, 44px);
-font-weight: 700;
-line-height: 1.15;
-margin-bottom: 16px;
-color: var(–white);
-}
-.section-title span { color: var(–lime); }
-.section-desc {
-font-size: 16px;
-color: rgba(253,250,245,0.6);
-max-width: 560px;
-line-height: 1.7;
-margin-bottom: 52px;
-}
+.btn-primary:hover { background: var(–gold-light); transform: translateY(-2px); }
 
-/* –– DIFFERENTIALS –– */
-.diff-wrap {
-background: linear-gradient(135deg, #1e1508, #2a1c0c);
-border-radius: 0;
-border-top: 1px solid rgba(200,168,75,0.15);
-border-bottom: 1px solid rgba(200,168,75,0.15);
-padding: 80px 0;
-}
-
-.diff-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-
-.diff-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 2px;
-background: rgba(200,168,75,0.08);
-border-radius: 12px;
-overflow: hidden;
-margin-top: 52px;
-}
-
-.diff-card {
-background: var(–earth);
-padding: 36px 32px;
-transition: background 0.3s;
-position: relative;
-overflow: hidden;
-}
-
-.diff-card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0;
-height: 2px;
-background: linear-gradient(90deg, transparent, var(–lime), transparent);
-opacity: 0;
+.btn-ghost {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.78rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–cream);
+text-decoration: none;
+display: flex; align-items: center; gap: 10px;
+opacity: 0.7;
 transition: opacity 0.3s;
 }
+.btn-ghost:hover { opacity: 1; }
+.btn-ghost .arrow { font-size: 1.2rem; transition: transform 0.3s; }
+.btn-ghost:hover .arrow { transform: translateX(6px); }
 
-.diff-card:hover { background: #201508; }
-.diff-card:hover::before { opacity: 1; }
-
-.diff-icon {
-width: 48px; height: 48px;
-background: rgba(168,199,72,0.12);
-border-radius: 10px;
-display: flex; align-items: center; justify-content: center;
-margin-bottom: 20px;
-font-size: 22px;
+/* Stats bar */
+.hero-stats {
+position: absolute;
+bottom: 48px; left: 60px;
+display: flex; gap: 60px;
+opacity: 0;
+animation: fadeUp 0.8s ease 1.1s forwards;
+}
+.stat-item {}
+.stat-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.4rem;
+font-weight: 300;
+color: var(–gold-light);
+line-height: 1;
+}
+.stat-label {
+font-size: 0.68rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–text-muted);
+margin-top: 4px;
 }
 
-.diff-title {
-font-family: ‘Playfair Display’, serif;
-font-size: 20px;
-font-weight: 700;
-color: var(–harvest);
-margin-bottom: 10px;
+/* Scroll indicator */
+.scroll-indicator {
+position: absolute;
+bottom: 48px; right: 60px;
+display: flex; flex-direction: column; align-items: center; gap: 8px;
+opacity: 0.4;
+animation: fadeUp 0.8s ease 1.3s forwards;
+}
+.scroll-line {
+width: 1px; height: 60px;
+background: linear-gradient(to bottom, transparent, var(–gold));
+animation: scrollPulse 2s ease infinite;
+}
+@keyframes scrollPulse {
+0%, 100% { opacity: 0.4; }
+50% { opacity: 1; }
+}
+.scroll-text {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+writing-mode: vertical-rl;
 }
 
-.diff-text {
-font-size: 14px;
-color: rgba(253,250,245,0.58);
-line-height: 1.7;
+/* DIVIDER */
+.gold-divider {
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+margin: 0;
 }
 
-/* –– HUB PILARES –– */
-.pilares-grid {
+/* SOBRE */
+.sobre {
+background: var(–earth-mid);
+padding: 120px 60px;
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 32px;
-margin-top: 52px;
+gap: 100px;
+align-items: center;
 }
-
-@media(max-width:700px){
-.pilares-grid { grid-template-columns: 1fr; }
-}
-
-.pilar {
-background: linear-gradient(135deg, rgba(45,31,10,0.9), rgba(26,18,8,0.95));
-border: 1px solid rgba(200,168,75,0.15);
-border-radius: 14px;
-padding: 36px;
-position: relative;
-overflow: hidden;
-transition: border-color 0.3s, transform 0.3s;
-}
-
-.pilar:hover { border-color: rgba(168,199,72,0.35); transform: translateY(-4px); }
-
-.pilar-num {
-font-family: ‘Playfair Display’, serif;
-font-size: 64px;
-font-weight: 900;
-color: rgba(168,199,72,0.07);
-position: absolute;
-top: 16px; right: 24px;
-line-height: 1;
-pointer-events: none;
-}
-
-.pilar-tag {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-color: var(–lime);
-letter-spacing: 0.18em;
+.sobre-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.7rem;
+letter-spacing: 0.25em;
 text-transform: uppercase;
-background: rgba(168,199,72,0.1);
-display: inline-block;
-padding: 4px 10px;
-border-radius: 100px;
-margin-bottom: 16px;
+color: var(–gold);
+margin-bottom: 24px;
+display: flex; align-items: center; gap: 12px;
+}
+.sobre-label::before { content: ‘’; width: 24px; height: 1px; background: var(–gold); }
+.sobre-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.4rem, 4vw, 3.6rem);
+font-weight: 300;
+line-height: 1.15;
+margin-bottom: 32px;
+}
+.sobre-title em { font-style: italic; color: var(–gold-light); }
+.sobre-text {
+font-size: 0.95rem;
+font-weight: 300;
+line-height: 1.9;
+color: var(–text-muted);
+margin-bottom: 20px;
+}
+.sobre-right { position: relative; }
+.sobre-box {
+border: 1px solid rgba(201,168,76,0.2);
+padding: 48px;
+position: relative;
+}
+.sobre-box::before {
+content: ‘’;
+position: absolute;
+top: -1px; left: 40px; right: 40px;
+height: 3px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+}
+.pillar {
+margin-bottom: 36px;
+}
+.pillar:last-child { margin-bottom: 0; }
+.pillar-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 0.75rem;
+color: var(–gold);
+letter-spacing: 0.1em;
+margin-bottom: 8px;
+}
+.pillar-title {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 1.1rem;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin-bottom: 8px;
+color: var(–cream);
+}
+.pillar-text {
+font-size: 0.88rem;
+line-height: 1.7;
+color: var(–text-muted);
+font-weight: 300;
 }
 
-.pilar-title {
-font-family: ‘Playfair Display’, serif;
-font-size: 22px;
-font-weight: 700;
-color: var(–white);
-margin-bottom: 12px;
+/* PRODUTOS */
+.produtos {
+background: var(–green-deep);
+padding: 120px 60px;
 }
-
-.pilar-desc {
-font-size: 14px;
-color: rgba(253,250,245,0.58);
-line-height: 1.75;
+.section-header {
+text-align: center;
+margin-bottom: 80px;
 }
-
-.pilar-items {
-list-style: none;
-margin-top: 20px;
-display: flex;
-flex-direction: column;
-gap: 8px;
+.section-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.7rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 20px;
 }
-
-.pilar-items li {
-font-size: 13px;
-color: rgba(253,250,245,0.7);
-display: flex;
-align-items: flex-start;
-gap: 10px;
-line-height: 1.5;
+.section-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.4rem, 4vw, 3.4rem);
+font-weight: 300;
+line-height: 1.15;
 }
+.section-title em { font-style: italic; color: var(–gold-light); }
 
-.pilar-items li::before {
-content: ‘→’;
-color: var(–lime);
-font-size: 12px;
-flex-shrink: 0;
-margin-top: 1px;
-}
-
-/* –– PRODUTOS –– */
 .produtos-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 20px;
-margin-top: 52px;
-}
-
-.produto-card {
-background: linear-gradient(170deg, #241808, #1a1208);
-border: 1px solid rgba(200,168,75,0.12);
-border-radius: 12px;
-padding: 28px 24px;
-text-align: center;
-transition: all 0.3s;
-cursor: default;
-}
-
-.produto-card:hover {
-border-color: var(–gold);
-background: linear-gradient(170deg, #2d1f0a, #241808);
-transform: translateY(-3px);
-box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-}
-
-.produto-emoji {
-font-size: 36px;
-margin-bottom: 14px;
-display: block;
-}
-
-.produto-name {
-font-family: ‘Playfair Display’, serif;
-font-size: 16px;
-font-weight: 700;
-color: var(–harvest);
-margin-bottom: 8px;
-}
-
-.produto-cat {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-color: var(–lime);
-letter-spacing: 0.15em;
-text-transform: uppercase;
-margin-bottom: 10px;
-}
-
-.produto-desc {
-font-size: 12px;
-color: rgba(253,250,245,0.5);
-line-height: 1.6;
-}
-
-.produto-hub {
-margin-top: 14px;
-display: inline-flex;
-align-items: center;
-gap: 5px;
-font-size: 11px;
-color: var(–lime);
-background: rgba(168,199,72,0.1);
-border-radius: 100px;
-padding: 3px 10px;
-}
-
-/* –– COMPARISON –– */
-.comparison {
-background: linear-gradient(135deg, #1e1508, #2a1c0c);
-border-top: 1px solid rgba(200,168,75,0.1);
-padding: 80px 0;
-}
-
-.comparison-inner { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-
-.comp-table {
-width: 100%;
-border-collapse: collapse;
-margin-top: 52px;
-overflow: hidden;
-border-radius: 12px;
-}
-
-.comp-table th {
-padding: 18px 24px;
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-text-align: left;
-}
-
-.comp-table th:first-child { color: rgba(253,250,245,0.4); }
-.comp-table th:nth-child(2) {
-background: rgba(200,168,75,0.08);
-color: rgba(253,250,245,0.5);
-}
-.comp-table th:nth-child(3) {
-background: rgba(168,199,72,0.12);
-color: var(–lime);
-border-radius: 0 12px 0 0;
-}
-.comp-table th:nth-child(2) { border-radius: 12px 0 0 0; }
-
-.comp-table td {
-padding: 16px 24px;
-font-size: 14px;
-border-top: 1px solid rgba(200,168,75,0.07);
-}
-
-.comp-table tr:last-child td:nth-child(2) { border-radius: 0 0 0 12px; }
-.comp-table tr:last-child td:nth-child(3) { border-radius: 0 0 12px 0; }
-
-.comp-table td:first-child { color: rgba(253,250,245,0.65); font-weight: 500; }
-.comp-table td:nth-child(2) { background: rgba(200,168,75,0.04); color: rgba(253,250,245,0.4); }
-.comp-table td:nth-child(3) { background: rgba(168,199,72,0.06); color: var(–white); font-weight: 500; }
-
-.check { color: var(–lime); font-size: 16px; }
-.cross { color: rgba(253,250,245,0.2); font-size: 16px; }
-.highlight { color: var(–lime) !important; font-weight: 600 !important; }
-
-/* –– ROI –– */
-.roi-grid {
-display: grid;
 grid-template-columns: repeat(3, 1fr);
-gap: 24px;
-margin-top: 52px;
+gap: 1px;
+background: rgba(201,168,76,0.1);
 }
-
-@media(max-width:600px){
-.roi-grid { grid-template-columns: 1fr; }
-}
-
-.roi-card {
-text-align: center;
-padding: 36px 24px;
-background: linear-gradient(170deg, rgba(45,31,10,0.5), rgba(26,18,8,0.8));
-border: 1px solid rgba(200,168,75,0.12);
-border-radius: 12px;
-}
-
-.roi-number {
-font-family: ‘Playfair Display’, serif;
-font-size: 52px;
-font-weight: 900;
-color: var(–harvest);
-line-height: 1;
-margin-bottom: 8px;
-}
-
-.roi-number sup { font-size: 0.45em; vertical-align: super; color: var(–lime); }
-
-.roi-label {
-font-size: 14px;
-color: rgba(253,250,245,0.55);
-line-height: 1.5;
-}
-
-/* –– CTA FINAL –– */
-.cta-final {
-text-align: center;
-padding: 100px 40px;
+.produto-card {
+background: var(–green-deep);
+padding: 52px 44px;
+transition: background 0.4s;
 position: relative;
 overflow: hidden;
 }
-
-.cta-final::before {
+.produto-card::after {
 content: ‘’;
-position: absolute; inset: 0;
-background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(90,138,40,0.15) 0%, transparent 70%);
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 2px;
+background: var(–gold);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.4s ease;
+}
+.produto-card:hover { background: var(–green-mid); }
+.produto-card:hover::after { transform: scaleX(1); }
+
+.produto-icon {
+font-size: 2.4rem;
+margin-bottom: 28px;
+display: block;
+}
+.produto-name {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 1.2rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–cream);
+margin-bottom: 16px;
+}
+.produto-desc {
+font-size: 0.88rem;
+line-height: 1.8;
+color: var(–text-muted);
+font-weight: 300;
+}
+.produto-tag {
+display: inline-block;
+margin-top: 24px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+border: 1px solid rgba(201,168,76,0.3);
+padding: 5px 14px;
+}
+
+/* FRANQUIA */
+.franquia {
+background: var(–earth);
+padding: 120px 60px;
+position: relative;
+overflow: hidden;
+}
+.franquia-bg-text {
+position: absolute;
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 22vw;
+font-weight: 300;
+color: rgba(201,168,76,0.03);
+white-space: nowrap;
 pointer-events: none;
+letter-spacing: -0.05em;
+}
+.franquia-inner {
+position: relative;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 100px;
+align-items: start;
+}
+.franquia-steps {
+counter-reset: step;
+}
+.step {
+display: flex; gap: 28px;
+padding: 32px 0;
+border-bottom: 1px solid rgba(201,168,76,0.1);
+position: relative;
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 3rem;
+font-weight: 300;
+color: rgba(201,168,76,0.2);
+line-height: 1;
+min-width: 50px;
+}
+.step-content {}
+.step-title {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 1.05rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–cream);
+margin-bottom: 10px;
+}
+.step-text {
+font-size: 0.88rem;
+line-height: 1.8;
+color: var(–text-muted);
+font-weight: 300;
 }
 
-.cta-final .section-title { text-align: center; margin-bottom: 12px; }
-.cta-final .section-desc { margin: 0 auto 40px; text-align: center; }
-
-/* –– HEADER –– */
-header {
-position: fixed; top: 0; left: 0; right: 0;
-z-index: 100;
-display: flex; align-items: center; justify-content: space-between;
-padding: 20px 40px;
-background: rgba(26,18,8,0.85);
-backdrop-filter: blur(12px);
-border-bottom: 1px solid rgba(200,168,75,0.1);
+.hub-card {
+border: 1px solid rgba(201,168,76,0.25);
+padding: 52px;
+position: sticky;
+top: 120px;
+}
+.hub-card::before {
+content: ‘’;
+display: block;
+width: 48px; height: 3px;
+background: var(–gold);
+margin-bottom: 32px;
+}
+.hub-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2rem;
+font-weight: 300;
+margin-bottom: 12px;
+}
+.hub-subtitle {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.75rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 32px;
+}
+.hub-features { list-style: none; }
+.hub-features li {
+padding: 14px 0;
+border-bottom: 1px solid rgba(201,168,76,0.08);
+font-size: 0.9rem;
+color: var(–text-muted);
+display: flex; align-items: center; gap: 14px;
+font-weight: 300;
+}
+.hub-features li::before {
+content: ‘◆’;
+font-size: 0.5rem;
+color: var(–gold);
 }
 
-.logo {
-font-family: ‘Playfair Display’, serif;
-font-size: 22px;
-font-weight: 900;
-color: var(–white);
-letter-spacing: -0.02em;
+/* CTA */
+.cta-section {
+background: linear-gradient(135deg, var(–green-deep) 0%, var(–earth) 50%, var(–green-deep) 100%);
+padding: 140px 60px;
+text-align: center;
+position: relative;
+overflow: hidden;
 }
+.cta-ring {
+position: absolute;
+width: 600px; height: 600px;
+border: 1px solid rgba(201,168,76,0.08);
+border-radius: 50%;
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+}
+.cta-ring:nth-child(2) {
+width: 400px; height: 400px;
+border-color: rgba(201,168,76,0.12);
+}
+.cta-content { position: relative; }
+.cta-tag {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.7rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 28px;
+}
+.cta-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.8rem, 5vw, 4.5rem);
+font-weight: 300;
+line-height: 1.1;
+margin-bottom: 28px;
+}
+.cta-title em { font-style: italic; color: var(–gold-light); }
+.cta-sub {
+font-size: 1rem;
+color: var(–text-muted);
+font-weight: 300;
+max-width: 480px;
+margin: 0 auto 52px;
+line-height: 1.8;
+}
+.cta-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
-.logo span { color: var(–lime); }
-
-nav { display: flex; gap: 32px; align-items: center; }
-
-nav a {
-font-size: 13px;
-color: rgba(253,250,245,0.55);
+/* FOOTER */
+footer {
+background: #160f06;
+padding: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-top: 1px solid rgba(201,168,76,0.1);
+}
+.footer-logo {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.4rem;
+font-weight: 300;
+letter-spacing: 0.12em;
+}
+.footer-logo span { color: var(–gold); font-style: italic; }
+.footer-mid {
+text-align: center;
+}
+.footer-tagline {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.65rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–text-muted);
+}
+.footer-social {
+display: flex; gap: 24px;
+}
+.footer-social a {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.7rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–text-muted);
 text-decoration: none;
-letter-spacing: 0.03em;
 transition: color 0.2s;
 }
+.footer-social a:hover { color: var(–gold); }
 
-nav a:hover { color: var(–white); }
-
-.nav-cta {
-background: rgba(168,199,72,0.12) !important;
-color: var(–lime) !important;
-border: 1px solid rgba(168,199,72,0.25) !important;
-padding: 8px 18px;
-border-radius: 6px;
-font-size: 13px !important;
+/* Scroll animation utility */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
-@media(max-width:700px){
-header { padding: 16px 20px; }
-nav { gap: 16px; }
-nav a:not(.nav-cta) { display: none; }
-.hero { padding: 80px 20px 40px; }
-section { padding: 60px 20px; }
-.hero-visual { display: none; }
-}
-
-/* –– FOOTER –– */
-footer {
-border-top: 1px solid rgba(200,168,75,0.1);
-padding: 32px 40px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-font-size: 12px;
-color: rgba(253,250,245,0.3);
-font-family: ‘Space Mono’, monospace;
-}
-
-footer span { color: var(–lime); }
-
-.divider {
-width: 100%;
-height: 1px;
-background: linear-gradient(90deg, transparent, rgba(200,168,75,0.2), transparent);
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
 }
 </style>
 
 </head>
 <body>
 
-<!-- HEADER -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<header>
-  <div class="logo">Global<span>Terra</span></div>
-  <nav>
-    <a href="#diferenciais">Diferenciais</a>
-    <a href="#hub">Hub Técnico</a>
+<!-- NAV -->
+
+<nav>
+  <div class="nav-logo">Global <span>Terra</span></div>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
     <a href="#produtos">Produtos</a>
-    <a href="#franquia" class="nav-cta">Seja Franqueado</a>
-  </nav>
-</header>
+    <a href="#franquia">Franquias</a>
+    <a href="#contato" class="nav-cta">Seja um Franqueado</a>
+  </div>
+</nav>
 
 <!-- HERO -->
 
-<div class="hero">
+<section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-geo"></div>
+  <div class="hero-vertical">Agronegócio Premium · Brasil · 2024</div>
 
-  <div class="hero-badge">Hub Técnico Exclusivo</div>
-  <div class="hero-eyebrow">Franquia Global Terra · Agronegócio</div>
-  <h1 class="hero-title">
-    <span class="gt">A franquia que entrega</span>
-    <em>Tecnologia</em><br>no Campo
-  </h1>
-  <p class="hero-sub">
-    Mais do que revender insumos — o franchisado Global Terra opera como um centro de inteligência agrícola, com suporte técnico dedicado, dados de lavoura e acesso aos melhores produtos do mercado.
-  </p>
-  <div class="hero-ctas">
-    <a href="#hub" class="btn-primary">↓ Conheça o Hub Técnico</a>
-    <a href="#produtos" class="btn-outline">Ver Linha de Produtos</a>
-  </div>
-
-  <div class="hero-visual">
-    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="200" r="180" stroke="rgba(168,199,72,0.2)" stroke-width="1"/>
-      <circle cx="200" cy="200" r="140" stroke="rgba(200,168,75,0.15)" stroke-width="1" stroke-dasharray="4 8"/>
-      <circle cx="200" cy="200" r="100" stroke="rgba(168,199,72,0.1)" stroke-width="1"/>
-      <circle cx="200" cy="200" r="8" fill="rgba(168,199,72,0.6)"/>
-      <circle cx="200" cy="200" r="4" fill="rgba(168,199,72,1)"/>
-      <!-- radial lines -->
-      <line x1="200" y1="60" x2="200" y2="100" stroke="rgba(168,199,72,0.3)" stroke-width="1"/>
-      <line x1="200" y1="300" x2="200" y2="340" stroke="rgba(168,199,72,0.3)" stroke-width="1"/>
-      <line x1="60" y1="200" x2="100" y2="200" stroke="rgba(168,199,72,0.3)" stroke-width="1"/>
-      <line x1="300" y1="200" x2="340" y2="200" stroke="rgba(168,199,72,0.3)" stroke-width="1"/>
-      <!-- nodes -->
-      <circle cx="200" cy="60" r="5" fill="rgba(200,168,75,0.7)"/>
-      <circle cx="320" cy="120" r="4" fill="rgba(168,199,72,0.5)"/>
-      <circle cx="320" cy="280" r="4" fill="rgba(168,199,72,0.5)"/>
-      <circle cx="80" cy="120" r="4" fill="rgba(168,199,72,0.5)"/>
-      <circle cx="80" cy="280" r="4" fill="rgba(168,199,72,0.5)"/>
-      <circle cx="200" cy="340" r="5" fill="rgba(200,168,75,0.5)"/>
-      <!-- connect -->
-      <path d="M200 200 L320 120" stroke="rgba(168,199,72,0.15)" stroke-width="1"/>
-      <path d="M200 200 L320 280" stroke="rgba(168,199,72,0.15)" stroke-width="1"/>
-      <path d="M200 200 L80 120" stroke="rgba(168,199,72,0.15)" stroke-width="1"/>
-      <path d="M200 200 L80 280" stroke="rgba(168,199,72,0.15)" stroke-width="1"/>
-      <path d="M200 200 L200 60" stroke="rgba(200,168,75,0.2)" stroke-width="1"/>
-      <path d="M200 200 L200 340" stroke="rgba(200,168,75,0.15)" stroke-width="1"/>
-    </svg>
-  </div>
-</div>
-
-<!-- DIFERENCIAIS -->
-
-<div class="diff-wrap" id="diferenciais">
-  <div class="diff-inner">
-    <div class="section-label">Por que Global Terra?</div>
-    <h2 class="section-title">Uma franquia com DNA<br><span>técnico e tecnológico</span></h2>
-    <p class="section-desc">Enquanto outras franquias vendem produtos, a Global Terra entrega soluções completas ao produtor rural — e isso transforma o franqueado em um parceiro estratégico da fazenda.</p>
-    <div class="diff-grid">
-      <div class="diff-card">
-        <div class="diff-icon">🌿</div>
-        <div class="diff-title">Consultoria Técnica Inclusa</div>
-        <p class="diff-text">Cada venda é acompanhada de suporte agronômico. O franqueado não vende só o produto — ele vende o resultado esperado na lavoura.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">📡</div>
-        <div class="diff-title">Dados de Lavoura em Tempo Real</div>
-        <p class="diff-text">Acesso à plataforma de monitoramento com dados climáticos, histórico de aplicações e alertas personalizados por talhão.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">🤝</div>
-        <div class="diff-title">Fidelização via Resultado</div>
-        <p class="diff-text">Produtores fidelizados por desempenho e confiança técnica — não apenas por preço. Maior recorrência e ticket médio alto.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">🏆</div>
-        <div class="diff-title">Marca Regional Forte</div>
-        <p class="diff-text">Posicionamento premium no agronegócio local com suporte de campanha da marca Global Terra para cada franqueado.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">📦</div>
-        <div class="diff-title">Portfólio Completo e Curado</div>
-        <p class="diff-text">Insumos, fertilizantes, sementes e defensivos selecionados pela equipe técnica central para cada bioma e cultura atendida.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">🎓</div>
-        <div class="diff-title">Treinamento Contínuo</div>
-        <p class="diff-text">Plataforma EAD exclusiva com trilhas técnicas, atualizações de portfólio e certificações para a equipe do franqueado.</p>
-      </div>
+  <div class="hero-content">
+    <div class="hero-tag">Agronegócio Premium</div>
+    <h1 class="hero-title">
+      Cultivando o<br>
+      <em>futuro do campo</em><br>
+      brasileiro
+    </h1>
+    <p class="hero-sub">
+      Defensivos e fertilizantes de alta performance para quem leva a sério cada hectare. Tecnologia de ponta, suporte técnico especializado e um modelo de negócio que cresce com você.
+    </p>
+    <div class="hero-actions">
+      <a href="#franquia" class="btn-primary">Quero ser Franqueado</a>
+      <a href="#produtos" class="btn-ghost">Nossos Produtos <span class="arrow">→</span></a>
     </div>
   </div>
-</div>
 
-<!-- HUB TÉCNICO -->
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">Premium</div>
+      <div class="stat-label">Linha de Produtos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Hub</div>
+      <div class="stat-label">Técnico Exclusivo</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Suporte ao Franqueado</div>
+    </div>
+  </div>
 
-<section id="hub">
-  <div class="section-label">O Grande Diferencial</div>
-  <h2 class="section-title">O que é o<br><span>Hub Técnico Global Terra</span></h2>
-  <p class="section-desc">Um ecossistema de inteligência agrícola integrado à operação da franquia — que transforma cada ponto de venda em um centro de decisão técnica para o produtor.</p>
+  <div class="scroll-indicator">
+    <div class="scroll-text">Scroll</div>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-  <div class="pilares-grid">
-    <div class="pilar">
-      <div class="pilar-num">01</div>
-      <div class="pilar-tag">Diagnóstico</div>
-      <div class="pilar-title">Análise de Solo & Lavoura</div>
-      <p class="pilar-desc">O franqueado oferece análises técnicas com emissão de laudos e recomendações de produtos alinhadas ao resultado esperado.</p>
-      <ul class="pilar-items">
-        <li>Coleta e interpretação de análise de solo</li>
-        <li>Mapeamento de talhões por imagem de satélite</li>
-        <li>Relatórios de produtividade histórica</li>
-        <li>Prescrição de insumos individualizada</li>
-      </ul>
-    </div>
-    <div class="pilar">
-      <div class="pilar-num">02</div>
-      <div class="pilar-tag">Suporte</div>
-      <div class="pilar-title">Central de Apoio Agronômico</div>
-      <p class="pilar-desc">Acesso direto à equipe de especialistas da Global Terra para suporte técnico nas principais culturas do portfólio.</p>
-      <ul class="pilar-items">
-        <li>Agrônomos disponíveis via app e telefone</li>
-        <li>Respostas a dúvidas técnicas em até 2h</li>
-        <li>Suporte em campo sob demanda</li>
-        <li>Dossiês por cultura: soja, milho, café, cana</li>
-      </ul>
-    </div>
-    <div class="pilar">
-      <div class="pilar-num">03</div>
-      <div class="pilar-tag">Tecnologia</div>
-      <div class="pilar-title">Plataforma Digital do Franqueado</div>
-      <p class="pilar-desc">Painel de gestão comercial, pedidos, estoque e CRM de produtores rurais, tudo integrado e em nuvem.</p>
-      <ul class="pilar-items">
-        <li>CRM rural com histórico completo do cliente</li>
-        <li>Pedidos e controle de estoque em tempo real</li>
-        <li>Dashboard de performance de vendas</li>
-        <li>Alertas de safra e oportunidades de venda</li>
-      </ul>
-    </div>
-    <div class="pilar">
-      <div class="pilar-num">04</div>
-      <div class="pilar-tag">Treinamento</div>
-      <div class="pilar-title">Academia Global Terra</div>
-      <p class="pilar-desc">Capacitação contínua da equipe do franqueado com conteúdo técnico atualizado e trilhas por cultura e produto.</p>
-      <ul class="pilar-items">
-        <li>Plataforma EAD com mais de 200 horas</li>
-        <li>Certificações por cultura e produto</li>
-        <li>Lives mensais com especialistas</li>
-        <li>Manual técnico sempre atualizado</li>
-      </ul>
+<div class="gold-divider"></div>
+
+<!-- SOBRE -->
+
+<section class="sobre" id="sobre">
+  <div class="sobre-left reveal">
+    <div class="sobre-label">Quem Somos</div>
+    <h2 class="sobre-title">
+      Excelência que<br>
+      <em>transforma</em><br>
+      o agronegócio
+    </h2>
+    <p class="sobre-text">
+      A Global Terra nasce com uma missão clara: levar ao produtor rural brasileiro o que há de mais avançado em defensivos e fertilizantes premium, com o suporte técnico que o campo moderno exige.
+    </p>
+    <p class="sobre-text">
+      Nosso modelo único combina produtos de alta performance com um Hub Técnico especializado, garantindo não apenas a venda, mas o resultado real na lavoura.
+    </p>
+  </div>
+  <div class="sobre-right reveal">
+    <div class="sobre-box">
+      <div class="pillar">
+        <div class="pillar-num">01 ·</div>
+        <div class="pillar-title">Produtos Premium</div>
+        <div class="pillar-text">Linha exclusiva de defensivos e fertilizantes com formulações avançadas para máximo desempenho e eficiência.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02 ·</div>
+        <div class="pillar-title">Hub Técnico</div>
+        <div class="pillar-text">Suporte agronômico especializado integrado à franquia, gerando valor diferencial para o produtor rural.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03 ·</div>
+        <div class="pillar-title">Modelo Escalável</div>
+        <div class="pillar-text">Franquias estruturadas para crescer com consistência, respaldadas por marca forte e operação comprovada.</div>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="gold-divider"></div>
 
 <!-- PRODUTOS -->
 
-<div class="diff-wrap" id="produtos">
-  <div class="diff-inner">
-    <div class="section-label">Portfólio Global Terra</div>
-    <h2 class="section-title">Produtos que o <span>Hub Técnico</span><br>potencializa</h2>
-    <p class="section-desc">Cada produto do portfólio Global Terra é integrado ao Hub com fichas técnicas, protocolos de uso, recomendações por cultura e suporte agronômico dedicado.</p>
-
-```
-<div class="produtos-grid">
-  <div class="produto-card">
-    <span class="produto-emoji">🌱</span>
-    <div class="produto-cat">Sementes</div>
-    <div class="produto-name">Linha Semente GT</div>
-    <p class="produto-desc">Sementes certificadas de alta performance para soja, milho e sorgo, com ficha técnica integrada ao Hub.</p>
-    <div class="produto-hub">✦ Recomendação por talhão</div>
+<section class="produtos" id="produtos">
+  <div class="section-header reveal">
+    <div class="section-label">Linha Global Terra</div>
+    <h2 class="section-title">Produtos <em>premium</em><br>para resultados reais</h2>
   </div>
-  <div class="produto-card">
-    <span class="produto-emoji">🧪</span>
-    <div class="produto-cat">Fertilizantes</div>
-    <div class="produto-name">FertiGT Foliar & Solo</div>
-    <p class="produto-desc">Linha completa de fertilizantes foliares e granulados com formulações para correção e manutenção nutricional.</p>
-    <div class="produto-hub">✦ Dosagem via análise de solo</div>
-  </div>
-  <div class="produto-card">
-    <span class="produto-emoji">🛡️</span>
-    <div class="produto-cat">Defensivos</div>
-    <div class="produto-name">DefendGT Proteção Total</div>
-    <p class="produto-desc">Fungicidas, herbicidas e inseticidas de alta eficiência com calendário de aplicação integrado ao app.</p>
-    <div class="produto-hub">✦ Alerta de aplicação no app</div>
-  </div>
-  <div class="produto-card">
-    <span class="produto-emoji">💧</span>
-    <div class="produto-cat">Bioinsumos</div>
-    <div class="produto-name">BioGT — Linha Biológica</div>
-    <p class="produto-desc">Inoculantes, bioestimulantes e defensivos biológicos para sistemas de produção sustentável e certificado.</p>
-    <div class="produto-hub">✦ Protocolo biológico completo</div>
-  </div>
-  <div class="produto-card">
-    <span class="produto-emoji">🌾</span>
-    <div class="produto-cat">Nutrição</div>
-    <div class="produto-name">NutriGT Micronutrientes</div>
-    <p class="produto-desc">Complexo de micronutrientes quelatizados para correção precisa de deficiências diagnosticadas em lavoura.</p>
-    <div class="produto-hub">✦ Indicação por laudo técnico</div>
-  </div>
-  <div class="produto-card">
-    <span class="produto-emoji">⚙️</span>
-    <div class="produto-cat">Corretivos</div>
-    <div class="produto-name">CalGT & GessoGT</div>
-    <p class="produto-desc">Calcário e gesso agrícola com análise granulométrica e recomendação de dose baseada em análise de solo.</p>
-    <div class="produto-hub">✦ Cálculo de dose automatizado</div>
-  </div>
-  <div class="produto-card">
-    <span class="produto-emoji">🔬</span>
-    <div class="produto-cat">Especialidades</div>
-    <div class="produto-name">GT Reguladores</div>
-    <p class="produto-desc">Reguladores de crescimento e adjuvantes para otimização de aplicações e incremento de produtividade.</p>
-    <div class="produto-hub">✦ Suporte técnico direto</div>
-  </div>
-  <div class="produto-card">
-    <span class="produto-emoji">📱</span>
-    <div class="produto-cat">Digital</div>
-    <div class="produto-name">App GT Produtor</div>
-    <p class="produto-desc">Aplicativo exclusivo do produtor com histórico de compras, alertas de pragas, clima e suporte técnico em um clique.</p>
-    <div class="produto-hub">✦ Exclusivo do franqueado GT</div>
-  </div>
-</div>
-```
-
-  </div>
-</div>
-
-<!-- COMPARISON TABLE -->
-
-<div class="comparison">
-  <div class="comparison-inner">
-    <div class="section-label">Análise Comparativa</div>
-    <h2 class="section-title">Global Terra <span>vs.</span> Franquia Convencional</h2>
-    <table class="comp-table">
-      <thead>
-        <tr>
-          <th>Critério</th>
-          <th>Franquia Convencional</th>
-          <th>Global Terra + Hub Técnico</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Suporte agronômico ao cliente</td>
-          <td><span class="cross">✗</span> Não incluso</td>
-          <td class="highlight"><span class="check">✓</span> Incluso e estruturado</td>
-        </tr>
-        <tr>
-          <td>Plataforma digital de gestão</td>
-          <td><span class="cross">✗</span> Ferramentas genéricas</td>
-          <td class="highlight"><span class="check">✓</span> CRM Rural exclusivo</td>
-        </tr>
-        <tr>
-          <td>Prescrição técnica de produtos</td>
-          <td><span class="cross">✗</span> Por conta do franqueado</td>
-          <td class="highlight"><span class="check">✓</span> Central de apoio dedicada</td>
-        </tr>
-        <tr>
-          <td>App para o produtor rural</td>
-          <td><span class="cross">✗</span> Não disponível</td>
-          <td class="highlight"><span class="check">✓</span> App GT Produtor</td>
-        </tr>
-        <tr>
-          <td>Treinamento técnico contínuo</td>
-          <td>✗ Somente na abertura</td>
-          <td class="highlight"><span class="check">✓</span> Academia GT permanente</td>
-        </tr>
-        <tr>
-          <td>Análise de solo integrada</td>
-          <td><span class="cross">✗</span> Terceirizada</td>
-          <td class="highlight"><span class="check">✓</span> Integrada ao sistema</td>
-        </tr>
-        <tr>
-          <td>Fidelização do produtor</td>
-          <td>Baixa (preço)</td>
-          <td class="highlight">Alta (resultado técnico)</td>
-        </tr>
-        <tr>
-          <td>Diferenciação regional</td>
-          <td>Apenas marca</td>
-          <td class="highlight">Marca + expertise técnica</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ROI -->
-
-<section>
-  <div class="section-label">Resultados para o Franqueado</div>
-  <h2 class="section-title">O Hub gera<br><span>retorno mensurável</span></h2>
-  <div class="roi-grid">
-    <div class="roi-card">
-      <div class="roi-number">3<sup>×</sup></div>
-      <div class="roi-label">maior fidelização<br>de clientes com suporte técnico ativo</div>
+  <div class="produtos-grid">
+    <div class="produto-card reveal">
+      <span class="produto-icon">🌿</span>
+      <div class="produto-name">Defensivos Premium</div>
+      <div class="produto-desc">Alta eficiência no controle de pragas e doenças com formulações de última geração, menor impacto ambiental e maior seletividade.</div>
+      <span class="produto-tag">Alta Performance</span>
     </div>
-    <div class="roi-card">
-      <div class="roi-number">+42<sup>%</sup></div>
-      <div class="roi-label">no ticket médio por cliente<br>com recomendação técnica personalizada</div>
+    <div class="produto-card reveal">
+      <span class="produto-icon">⚗️</span>
+      <div class="produto-name">Fertilizantes Especiais</div>
+      <div class="produto-desc">Nutrição foliar e solo com micronutrientes quelados, bioestimulantes e formulações específicas para cada cultura e fase.</div>
+      <span class="produto-tag">Linha Exclusiva</span>
     </div>
-    <div class="roi-card">
-      <div class="roi-number">8<sup>mo</sup></div>
-      <div class="roi-label">payback médio da franquia<br>contra 14 meses do modelo convencional</div>
+    <div class="produto-card reveal">
+      <span class="produto-icon">🔬</span>
+      <div class="produto-name">Biodefensivos</div>
+      <div class="produto-desc">Soluções biológicas de controle integrado de pragas, alinhadas às demandas por produção sustentável e mercados premium.</div>
+      <span class="produto-tag">Sustentável</span>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<div class="gold-divider"></div>
 
-<div class="divider"></div>
-<div class="cta-final" id="franquia">
-  <h2 class="section-title">Pronto para ser mais do que<br><span>um revendedor de insumos?</span></h2>
-  <p class="section-desc">
-    Junte-se à rede Global Terra e opere como um Hub Técnico de referência na sua região. Transforme o campo com tecnologia, suporte e os melhores produtos do agronegócio.
-  </p>
-  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-    <a href="#" class="btn-primary" style="font-size:15px;padding:16px 36px;">Quero ser franqueado Global Terra →</a>
-    <a href="#hub" class="btn-outline" style="font-size:15px;padding:16px 36px;">Saiba mais sobre o Hub</a>
+<!-- FRANQUIA -->
+
+<section class="franquia" id="franquia">
+  <div class="franquia-bg-text">TERRA</div>
+  <div class="franquia-inner">
+    <div>
+      <div class="sobre-label reveal">Modelo de Franquia</div>
+      <h2 class="sobre-title reveal">
+        Seu negócio,<br>
+        <em>nossa estrutura</em>
+      </h2>
+      <div class="franquia-steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Selecione sua região</div>
+            <div class="step-text">Análise de mercado e definição de território exclusivo para operação da sua franquia Global Terra.</div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Capacitação completa</div>
+            <div class="step-text">Treinamento técnico e comercial intensivo, imersão no portfólio de produtos e no modelo de atendimento premium.</div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Ativação do Hub Técnico</div>
+            <div class="step-text">Suporte agronômico especializado disponível para sua carteira de clientes, gerando fidelização e recompra.</div>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Crescimento com suporte</div>
+            <div class="step-text">Acompanhamento contínuo de métricas, marketing e expansão da carteira com toda a força da marca Global Terra.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+```
+<div>
+  <div class="hub-card reveal">
+    <div class="hub-title">Hub Técnico</div>
+    <div class="hub-subtitle">Diferencial Global Terra</div>
+    <p style="font-size:0.9rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; font-weight: 300;">
+      O Hub Técnico é o coração da nossa franquia. Engenheiros agrônomos especializados que garantem o resultado na lavoura e constroem a confiança do produtor na sua operação.
+    </p>
+    <ul class="hub-features">
+      <li>Diagnóstico técnico na propriedade</li>
+      <li>Recomendação agronômica personalizada</li>
+      <li>Acompanhamento de safra</li>
+      <li>Relatórios de performance e ROI</li>
+      <li>Treinamentos para produtores</li>
+      <li>Suporte pós-venda especializado</li>
+    </ul>
   </div>
 </div>
+```
+
+  </div>
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section" id="contato">
+  <div class="cta-ring"></div>
+  <div class="cta-ring"></div>
+  <div class="cta-content reveal">
+    <div class="cta-tag">Seja um Franqueado Global Terra</div>
+    <h2 class="cta-title">
+      Invista no<br>
+      <em>maior agronegócio</em><br>
+      do mundo
+    </h2>
+    <p class="cta-sub">
+      Junte-se à rede Global Terra e leve produtos premium com suporte técnico de excelência para os produtores da sua região.
+    </p>
+    <div class="cta-buttons">
+      <a href="https://www.instagram.com/globalterraoficial" target="_blank" class="btn-primary">Falar com o CEO</a>
+      <a href="https://wa.me/" class="btn-ghost">WhatsApp <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 
 <footer>
-  <span>Global Terra</span>
-  <span>Hub Técnico · Franquia Agronegócio</span>
-  <span>© 2025</span>
+  <div class="footer-logo">Global <span>Terra</span></div>
+  <div class="footer-mid">
+    <div class="footer-tagline">Agronegócio Premium · Hub Técnico · Franquias</div>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/globalterraoficial" target="_blank">@globalterraoficial</a>
+    <a href="https://www.instagram.com/ceoricardomiranda" target="_blank">@ceoricardomiranda</a>
+  </div>
 </footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 5 + 'px';
+    cursor.style.top = my - 5 + 'px';
+  });
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx - 18 + 'px';
+    ring.style.top = ry - 18 + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
