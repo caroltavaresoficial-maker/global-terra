@@ -15,185 +15,129 @@
   --gold-light:#E6C76E;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'Inter', sans-serif;
   background:var(--navy);
   color:white;
+  line-height:1.6;
 }
 
-/* CONTAINER PADRÃO */
 .container{
   max-width:1200px;
-  margin:0 auto;
-  padding:0 40px;
-}
-
-/* NAVBAR */
-nav{
-  padding:25px 0;
-}
-
-.nav-content{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-/* LOGO */
-.logo-wrap{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.logo-g{
-  width:44px;
-  height:44px;
-  border:1.5px solid var(--gold);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:'Playfair Display',serif;
-  font-weight:700;
-  font-size:18px;
-  color:var(--gold);
-}
-
-.logo-text{
-  display:flex;
-  flex-direction:column;
-}
-
-.logo-name{
-  font-family:'Playfair Display',serif;
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-.logo-sub{
-  font-size:10px;
-  letter-spacing:3px;
-  color:var(--gold);
-}
-
-/* MENU */
-.nav-links{
-  display:flex;
-  gap:18px;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:white;
-  font-size:12px;
-  padding:8px 18px;
-  border:1px solid rgba(255,255,255,0.25);
-  text-transform:uppercase;
-  letter-spacing:1px;
-  transition:0.3s;
-}
-
-.nav-links a:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-}
-
-/* BOTÃO */
-.nav-btn{
-  border:1px solid var(--gold)!important;
-  color:var(--gold)!important;
-}
-
-.nav-btn:hover{
-  background:var(--gold);
-  color:var(--navy)!important;
+  margin:auto;
+  padding:60px 30px;
 }
 
 /* HERO */
 .hero{
-  min-height:85vh;
-  display:flex;
-  align-items:center;
-  position:relative;
-}
-
-.hero-content{
-  display:flex;
-  flex-direction:column;
-  gap:25px;
-  max-width:600px;
+  text-align:center;
+  padding:100px 20px;
 }
 
 .hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:54px;
-  line-height:1.2;
+  font-family:'Playfair Display';
+  font-size:52px;
+  margin-bottom:20px;
 }
 
 .hero p{
-  opacity:0.75;
-  font-size:16px;
-  line-height:1.6;
+  opacity:0.8;
+  max-width:600px;
+  margin:auto;
 }
 
-/* STATS */
-.hero-stats{
-  position:absolute;
-  bottom:40px;
-  left:0;
+.btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:14px 28px;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:var(--gold);
+  color:var(--navy);
+}
+
+/* SECTION */
+.section-title{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.section-title h2{
+  font-family:'Playfair Display';
+  font-size:36px;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  border:1px solid rgba(255,255,255,0.2);
+  padding:30px;
+  transition:0.3s;
+}
+
+.card:hover{
+  border-color:var(--gold);
+  transform:translateY(-5px);
+}
+
+/* DIFERENCIAIS */
+.features{
   display:flex;
-  gap:70px;
+  flex-wrap:wrap;
+  gap:30px;
+  justify-content:center;
 }
 
-.hstat{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
+.feature{
+  max-width:250px;
+  text-align:center;
 }
 
-.hstat .val{
-  font-size:34px;
-  font-weight:600;
-  color:var(--gold-light);
+/* FRANQUIA */
+.franchise{
+  text-align:center;
 }
 
-.hstat .lbl{
-  font-size:12px;
+.franchise h2{
+  font-size:38px;
+  font-family:'Playfair Display';
+}
+
+.franchise p{
+  max-width:600px;
+  margin:20px auto;
+  opacity:0.8;
+}
+
+/* CTA FINAL */
+.cta{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.cta h2{
+  font-family:'Playfair Display';
+  font-size:40px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
   opacity:0.6;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-/* RESPONSIVO */
-@media(max-width:768px){
-
-  .nav-content{
-    flex-direction:column;
-    gap:20px;
-  }
-
-  .hero{
-    padding-top:40px;
-  }
-
-  .hero h1{
-    font-size:36px;
-  }
-
-  .hero-stats{
-    position:relative;
-    margin-top:40px;
-    gap:30px;
-    flex-wrap:wrap;
-  }
-
+  font-size:12px;
 }
 
 </style>
@@ -201,54 +145,91 @@ nav{
 
 <body>
 
-<nav>
-  <div class="container nav-content">
-
-    <div class="logo-wrap">
-      <div class="logo-g">G</div>
-      <div class="logo-text">
-        <div class="logo-name">GLOBAL TERRA</div>
-        <div class="logo-sub">AGRO BUSINESS</div>
-      </div>
-    </div>
-
-    <div class="nav-links">
-      <a href="#">Sobre</a>
-      <a href="#">Produtos</a>
-      <a href="#">Franquias</a>
-      <a href="#" class="nav-btn">Seja Franqueado</a>
-    </div>
-
-  </div>
-</nav>
-
+<!-- HERO -->
 <section class="hero">
-  <div class="container">
+  <h1>Alta performance no campo começa aqui</h1>
+  <p>Tecnologia, nutrição e estratégia para produtividade agrícola de verdade.</p>
+  <a href="#" class="btn">Conheça a Global Terra</a>
+</section>
 
-    <div class="hero-content">
-      <h1>Alta performance no campo começa aqui</h1>
-      <p>Tecnologia, nutrição e estratégia para produtividade agrícola de verdade.</p>
+<!-- SOBRE -->
+<section class="container">
+  <div class="section-title">
+    <h2>Quem é a Global Terra</h2>
+  </div>
+
+  <p style="text-align:center; max-width:800px; margin:auto;">
+    A Global Terra nasceu para transformar produtividade agrícola em resultado real. 
+    Com tecnologia avançada e estratégias inteligentes, levamos performance para produtores que querem crescer de verdade.
+  </p>
+</section>
+
+<!-- PRODUTOS -->
+<section class="container">
+  <div class="section-title">
+    <h2>Nossos Produtos</h2>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Nutrição Foliar</h3>
+      <p>Alta absorção e resposta rápida no campo.</p>
     </div>
 
-    <div class="hero-stats">
-      <div class="hstat">
-        <div class="val">18+</div>
-        <div class="lbl">Estados atendidos</div>
-      </div>
-
-      <div class="hstat">
-        <div class="val">100%</div>
-        <div class="lbl">Foco em resultado</div>
-      </div>
-
-      <div class="hstat">
-        <div class="val">Hub</div>
-        <div class="lbl">Inovação</div>
-      </div>
+    <div class="card">
+      <h3>Reguladores</h3>
+      <p>Controle inteligente do crescimento da planta.</p>
     </div>
 
+    <div class="card">
+      <h3>Alta Performance</h3>
+      <p>Produtos desenvolvidos para máxima produtividade.</p>
+    </div>
   </div>
 </section>
+
+<!-- DIFERENCIAIS -->
+<section class="container">
+  <div class="section-title">
+    <h2>Por que escolher a Global Terra</h2>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <h3>Resultado comprovado</h3>
+      <p>Foco total em performance no campo.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Tecnologia avançada</h3>
+      <p>Formulações modernas e eficientes.</p>
+    </div>
+
+    <div class="feature">
+      <h3>Suporte estratégico</h3>
+      <p>Acompanhamento próximo ao produtor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FRANQUIA -->
+<section class="container franchise">
+  <h2>Seja um Franqueado Global Terra</h2>
+  <p>
+    Entre para um modelo de negócio lucrativo, com suporte completo e um mercado em crescimento constante.
+  </p>
+  <a href="#" class="btn">Quero ser franqueado</a>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta">
+  <h2>O próximo nível do agro começa agora</h2>
+  <a href="#" class="btn">Fale com um especialista</a>
+</section>
+
+<footer>
+  © Global Terra - Todos os direitos reservados
+</footer>
 
 </body>
 </html>
