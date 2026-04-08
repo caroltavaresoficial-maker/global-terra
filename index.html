@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  
 <title>Global Terra</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -28,12 +27,22 @@ body{
   color:white;
 }
 
+/* CONTAINER PADRÃO */
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 40px;
+}
+
 /* NAVBAR */
 nav{
+  padding:25px 0;
+}
+
+.nav-content{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 60px;
 }
 
 /* LOGO */
@@ -44,8 +53,8 @@ nav{
 }
 
 .logo-g{
-  width:42px;
-  height:42px;
+  width:44px;
+  height:44px;
   border:1.5px solid var(--gold);
   border-radius:50%;
   display:flex;
@@ -53,6 +62,7 @@ nav{
   justify-content:center;
   font-family:'Playfair Display',serif;
   font-weight:700;
+  font-size:18px;
   color:var(--gold);
 }
 
@@ -64,27 +74,29 @@ nav{
 .logo-name{
   font-family:'Playfair Display',serif;
   font-weight:700;
+  letter-spacing:1px;
 }
 
 .logo-sub{
   font-size:10px;
-  letter-spacing:2px;
+  letter-spacing:3px;
   color:var(--gold);
 }
 
 /* MENU */
 .nav-links{
   display:flex;
-  gap:16px;
+  gap:18px;
 }
 
 .nav-links a{
   text-decoration:none;
   color:white;
   font-size:12px;
-  padding:8px 16px;
-  border:1px solid rgba(255,255,255,0.3);
+  padding:8px 18px;
+  border:1px solid rgba(255,255,255,0.25);
   text-transform:uppercase;
+  letter-spacing:1px;
   transition:0.3s;
 }
 
@@ -93,7 +105,7 @@ nav{
   color:var(--gold);
 }
 
-/* BOTÃO FRANQUIA */
+/* BOTÃO */
 .nav-btn{
   border:1px solid var(--gold)!important;
   color:var(--gold)!important;
@@ -106,45 +118,82 @@ nav{
 
 /* HERO */
 .hero{
-  height:90vh;
+  min-height:85vh;
   display:flex;
   align-items:center;
-  padding:0 60px;
   position:relative;
 }
 
-.hero-text{
+.hero-content{
+  display:flex;
+  flex-direction:column;
+  gap:25px;
   max-width:600px;
 }
 
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:48px;
-  margin-bottom:20px;
+  font-size:54px;
+  line-height:1.2;
 }
 
 .hero p{
-  opacity:0.8;
-  margin-bottom:20px;
+  opacity:0.75;
+  font-size:16px;
+  line-height:1.6;
 }
 
 /* STATS */
 .hero-stats{
   position:absolute;
   bottom:40px;
-  left:60px;
+  left:0;
   display:flex;
-  gap:60px;
+  gap:70px;
+}
+
+.hstat{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
 .hstat .val{
-  font-size:32px;
+  font-size:34px;
+  font-weight:600;
   color:var(--gold-light);
 }
 
 .hstat .lbl{
   font-size:12px;
-  opacity:0.7;
+  opacity:0.6;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* RESPONSIVO */
+@media(max-width:768px){
+
+  .nav-content{
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .hero{
+    padding-top:40px;
+  }
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .hero-stats{
+    position:relative;
+    margin-top:40px;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+
 }
 
 </style>
@@ -153,41 +202,51 @@ nav{
 <body>
 
 <nav>
-  <div class="logo-wrap">
-    <div class="logo-g">G</div>
-    <div class="logo-text">
-      <div class="logo-name">GLOBAL TERRA</div>
-      <div class="logo-sub">AGRO BUSINESS</div>
-    </div>
-  </div>
+  <div class="container nav-content">
 
-  <div class="nav-links">
-    <a href="#">Sobre</a>
-    <a href="#">Produtos</a>
-    <a href="#">Franquias</a>
-    <a href="#" class="nav-btn">Seja Franqueado</a>
+    <div class="logo-wrap">
+      <div class="logo-g">G</div>
+      <div class="logo-text">
+        <div class="logo-name">GLOBAL TERRA</div>
+        <div class="logo-sub">AGRO BUSINESS</div>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Sobre</a>
+      <a href="#">Produtos</a>
+      <a href="#">Franquias</a>
+      <a href="#" class="nav-btn">Seja Franqueado</a>
+    </div>
+
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-text">
-    <h1>Alta performance no campo começa aqui</h1>
-    <p>Tecnologia, nutrição e estratégia para produtividade agrícola de verdade.</p>
-  </div>
+  <div class="container">
 
-  <div class="hero-stats">
-    <div class="hstat">
-      <div class="val">18+</div>
-      <div class="lbl">Estados atendidos</div>
+    <div class="hero-content">
+      <h1>Alta performance no campo começa aqui</h1>
+      <p>Tecnologia, nutrição e estratégia para produtividade agrícola de verdade.</p>
     </div>
-    <div class="hstat">
-      <div class="val">100%</div>
-      <div class="lbl">Foco em resultado</div>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="val">18+</div>
+        <div class="lbl">Estados atendidos</div>
+      </div>
+
+      <div class="hstat">
+        <div class="val">100%</div>
+        <div class="lbl">Foco em resultado</div>
+      </div>
+
+      <div class="hstat">
+        <div class="val">Hub</div>
+        <div class="lbl">Inovação</div>
+      </div>
     </div>
-    <div class="hstat">
-      <div class="val">Hub</div>
-      <div class="lbl">Inovação</div>
-    </div>
+
   </div>
 </section>
 
